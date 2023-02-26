@@ -1,0 +1,22 @@
+---
+tf_role_name: TerraformProv
+ocp_proxmox_infra_server: proxmox.example.com
+ocp_proxmox_infra_tfstate_path: ~/ocp_proxmox_infra.tfstate
+
+ocp_proxmox_infra_iso_volume: ocp
+ocp_proxmox_infra_iso_name: fedora-coreos-37.20230122.3.0-live.x86_64.iso
+
+# Should match ocp_iso_customize output type
+#ocp_proxmox_infra_iso_type: minimal
+
+ocp_proxmox_infra_masters_id_prefix: 20
+ocp_proxmox_infra_workers_id_prefix: 30
+
+bootstrap_resources:
+   cpu: 4
+   ram: 16384
+   vmid: 200
+
+masters_resources:
+   cpu: 4
+   ram: 16384

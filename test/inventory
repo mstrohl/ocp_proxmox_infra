@@ -1,0 +1,14 @@
+[proxmox]
+ns351520 ansible_host=ns351520.ip-5-196-91.eu ansible_ssh_user=root ansible_ssh_pass="{{ vault_proxmox_ssh }}"
+
+[bootstrap]
+bootstrap ansible_host=prx005.example.com ansible_connection=local
+
+[masters]
+prx001.example.com ansible_connection=local mac="f2:9d:66:57:31:50"
+prx002.example.com ansible_connection=local mac="a2:da:ee:5c:92:7b"
+prx003.example.com ansible_connection=local mac="3a:d7:09:cb:e9:40"
+
+#[workers]
+#prx004.example.com ansible_connection=local
+#prx005.example.com ansible_connection=local

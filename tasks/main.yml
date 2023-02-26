@@ -1,0 +1,23 @@
+---
+- name: Prerequisites management
+  ansible.builtin.include_tasks: prerequisites.yml
+  when: inventory_hostname in groups['proxmox']
+  tags: prerequisites
+
+- name: Setting vars/facts
+  ansible.builtin.include_tasks: setting_facts.yml
+
+- name: Generate terraform project
+  run_once: true
+  ansible.builtin.include_tasks: gen_project.yml
+  tags: gen
+
+- name: Plan terraform
+  run_once: true
+  ansible.builtin.include_tasks: plan_project.yml
+  tags: plan
+
+- name: Apply terraform
+  run_once: true
+  ansible.builtin.include_tasks: apply_project.yml
+  tags: apply

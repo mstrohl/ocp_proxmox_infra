@@ -1,0 +1,17 @@
+---
+- name: generate tf
+  delegate_to: localhost
+  connection: local
+  block:
+    - name: ensure arbo
+      file:
+        state: directory
+        path: ~/proxmox_tf
+
+    - name: templating files
+      template:
+        src: "{{ item }}"
+        dest: "~/proxmox_tf/{{ item }}"
+      with_items:
+        - main.tf
+        - provider.tf 

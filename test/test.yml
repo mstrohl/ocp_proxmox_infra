@@ -1,0 +1,11 @@
+---
+
+- name: Testing role
+  hosts: all
+  become: true
+  roles:
+    - ../../ocp_proxmox_infra
+  vars:
+    vault_tf_proxmox_user: tf-user
+    vault_tf_proxmox_pass: "changeme"
+    vault_proxmox_ssh: changeme2

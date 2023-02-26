@@ -1,0 +1,10 @@
+---
+- name: Get iso version for RedHatCoreOS
+  ansible.builtin.set_fact:
+     _iso_output_version: "{{ ocp_proxmox_infra_iso_name.split('-')[1] }}"
+  when: "'rhcos' in ocp_proxmox_infra_iso_name"
+
+- name: Get iso version for FedoraCoreOS
+  ansible.builtin.set_fact:
+     _iso_output_version: "{{ ocp_proxmox_infra_iso_name.split('-')[2] }}"
+  when: "'fedora' in ocp_proxmox_infra_iso_name"

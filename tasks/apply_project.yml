@@ -1,0 +1,15 @@
+- name: Terraform apply
+  delegate_to: localhost
+  connection: local
+  terraform:
+    project_path: ~/proxmox_tf/
+    force_init: true
+    state: "{{ tf_proxmox_state | default('present') }}"
+    backend_config_files: "{{ ocp_proxmox_infra_tfstate_path }}" 
+  environment:
+    PM_USER: "{{ vault_tf_proxmox_user }}@pve"
+    PM_PASS: "{{ vault_tf_proxmox_pass }}"
+  register: tfcreate
+  until: "'/var/lock/pve-manager/pve-storage-local' not in tfcreate.stdout"
+  retries: 50
+  delay: 10 
